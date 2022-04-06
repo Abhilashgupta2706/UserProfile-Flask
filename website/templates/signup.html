@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block title %} Sign Up {% endblock title %}
+
+
+{% block content %}
+
+
+<div class="container mt-5 mx-1">
+    <form id="signup-form" method="POST">
+
+        <h2 class="my-4 sign-up-heading" align="center">SIGN UP</h1>
+
+            <div class="row my-2">
+                <div class="col">
+                    <label for="firstname" class="form-label">First Name</label>
+                    <input type="text" name="firstname" class="form-control" id="firstname">
+                </div>
+                <div class="col">
+                    <label for="secondname" class="form-label">Last Name</label>
+                    <input type="text" name="secondname" class="form-control" id="secondname">
+                </div>
+            </div>
+
+            <div class="row my-2">
+                <div class="col">
+                    <label for="username" class="form-label">Username</label>
+                    <div class="input-group">
+                        <div class="input-group-text">@</div>
+                        <input type="text" name="username" class="form-control" id="username">
+                    </div>
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" name="email" class="form-control" id="email">
+                </div>
+            </div>
+
+            <div class="row my-2">
+                <div class="col">
+                    <label for="city" class="form-label">City</label>
+                    <input type="text" name="city" class="form-control" id="city">
+                </div>
+                <div class="col">
+                    <label for="state" class="form-label">State</label>
+                    <input type="text" name="state" class="form-control" id="state">
+                </div>
+
+            </div>
+            <div class="row my-2">
+                <div class="col">
+                    <label for="propic" class="form-label">Profile Image</label>
+                    <input type="file" name="propic" class="form-control" id="propic"
+                        accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*">
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col">
+                    <label for="password1" class="form-label">Password</label>
+                    <input type="password" name="password1" class="form-control" id="password1">
+                </div>
+                <div class="col">
+                    <label for="password2" class="form-label">Confirm Password</label>
+                    <input type="password" name="password2" class="form-control" id="password2">
+                </div>
+            </div>
+
+            <div class="my-3">
+                <button type="submit" class="custom-btn custom-btn-signup btn btn-secondary">Sign Up</button>
+                <a href="/"> <button type="button"
+                        class="custom-btn custom-btn-existing-user btn btn-outline-secondary mx-1">Existing User?</button>
+                </a>
+            </div>
+    </form>
+</div>
+
+
+{% endblock content %}

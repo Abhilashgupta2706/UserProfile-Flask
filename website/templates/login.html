@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %} Log In {% endblock title %}
+
+
+{% block content %}
+<div class="container mt-5 mx-1">
+    <form id="login-form" method="POST">
+
+        <h2 class="my-4 log-in-heading" align="center">LOG IN</h1>
+
+            <div class="row my-2">
+                <div class="col">
+                    <label for="username" class="form-label">Username</label>
+                    <div class="input-group">
+                        <div class="input-group-text">@</div>
+                        <input type="text" name="username" class="form-control" id="username">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row my-2">
+                <div class="col">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" name="password" class="form-control" id="password">
+                </div>
+            </div>
+
+            <div class="my-3">
+                <button type="submit" class="custom-btn custom-btn-signup btn btn-secondary">Log In</button>
+            </div>
+
+    </form>
+</div>
+{% endblock content %}
