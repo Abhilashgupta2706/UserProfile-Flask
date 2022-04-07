@@ -1,6 +1,7 @@
 from flask import redirect, request, render_template, Blueprint, flash, url_for
-from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, login_required, logout_user, current_user
+from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename
 from .model import Users
 from . import db
 
@@ -10,25 +11,28 @@ auth = Blueprint('auth', __name__)
 @auth.route("/signup", methods=["GET", "POST"])
 def signup():
     if request.method == "POST":
-        propic = request.form.get("propic")
-        firstname = request.form.get("firstname")
-        secondname = request.form.get("secondname")
-        username = request.form.get("username")
-        email = request.form.get("email")
-        city = request.form.get("city")
-        state = request.form.get("state")
-        password1 = request.form.get("password1")
-        password2 = request.form.get("password2")
+
+        fetch_data = request.form.get
+
+        first_name = fetch_data("firstname")
+        last_name = fetch_data("lastname")
+        username = fetch_data("username")
+        email = fetch_data("email")
+        city = fetch_data("city")
+        state = fetch_data("state")
+        password1 = fetch_data("password1")
+        password2 = fetch_data("password2")
+        propic = request.files["propic"]
+        file_name = secure_filename(propic.filename)
+        mime_type = propic.mimetype
 
         new_user = Users.query.filter_by(username=username).first()
 
         if new_user:
             flash("Username already taken..!", category='error')
-        elif propic:
-            flash("Must select a image for profile..!", category='error')
-        elif len(firstname) < 1:
+        elif len(first_name) < 1:
             flash("First Name must be greater than 1 character", category='error')
-        elif len(secondname) < 1:
+        elif len(last_name) < 1:
             flash("Second Name must be greater than 1 character", category='error')
         elif len(username) < 1:
             flash("Username Name must be greater than 1 character", category='error')
@@ -43,8 +47,8 @@ def signup():
         elif len(password1) < 7:
             flash("Pawssword must be greater than 7 characters", category='error')
         else:
-            new_user = Users(propic=propic, firstname=firstname, secondname=secondname, username=username,
-                             email=email, city=city, state=state, password=generate_password_hash(password1, method='sha256'))
+            new_user = Users(first_name=first_name, last_name=last_name, username=username, email=email, city=city, state=state,
+                             password=generate_password_hash(password1, method='sha256'), propic=propic.read(), file_name=file_name, mime_type=mime_type)
 
             db.session.add(new_user)
             db.session.commit()

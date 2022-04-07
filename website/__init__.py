@@ -1,4 +1,3 @@
-from collections import UserString
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask import Flask
@@ -39,6 +38,6 @@ def CreateApp():
 
 
 def create_database(app):
-    if not path.exists(f'website/{DB_NAME}'):
+    if not path.exists(f'website/{DB_NAME}.db'):
         db.create_all(app=app)
         print('Databse Created....!')
