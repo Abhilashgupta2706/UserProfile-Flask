@@ -1,7 +1,6 @@
 # User Profile Web-App
 
 ### How to use
-[Click here](https://user-profile-flask.herokuapp.com/) to open this web app
 *  It is a simple User Profile page just like any other social media twitter, facebook, etc..
 *  Register your self to get your own profile card
 *  Fixing bugs and implimenting new features continuously
